@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>編集画面</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style>
+h1 {font-size:18pt; font-weight:bold; color:gray;}
+body {font-size:13pt; font-weight:bold; color:gray; margin:5px 25px;}
+pre{border: solid 3px #ddd; padding:10px;}
+tr {margin:5px;}
+th {padding:5px;color:white; background:darkgray;}
+td {padding:5px;color:black; background:#f0f0f0;}
+</style>
+</head>
+
+<body>
+<div class="col-sm-5">
+<div class="page-header">
+	<h1>登録商品入力</h1>
+</div>
+
+
+<table>
+<form method="post" action="/" th:object="${formModel}">
+
+	<!-- ID -->
+<tr><td><label for ="id">商品ID</label></td>
+	<td><input type="text" name="id" th:value="*{id}" /></td></tr>
+
+	<!-- 商品名 -->
+		<tr><td><label for="name">商品名</label></td>
+		<td><input type="text" name="name" th:value="*{name}" /></td></tr>
+
+	<!-- 価格 -->
+		<tr><td><label for="price">価格</label></td>
+		<td><input type="text" name="price" th:value="*{price}" /></td></tr>
+
+	<!-- 商品タイプ→マスタにする -->
+		<tr><td><label for="protype">商品タイプ</label></td>
+		<td><select>
+		<option value="" selected disabled>選択してください</option>
+		<option value="1">通常</option>
+		<option value="1">予約</option>
+		</select></td></tr>
+</form>
+</table>
+</div>
+
+	<input type="submit"  value="新規登録">
+	<input type="submit" onclick="../index.html" value="戻る" >
+	<input type="submit"  value="削除">
+
+<hr />
+	<table>
+	<tr><th>商品ID</th><th>商品名</th></tr>
+	<tr th:each="obj : ${datalist}">
+	<td th:text="${obj.id}"></td>
+	<td th:text="${obj.name}"></td>
+	</tr>
+	</table>
+
+</body>
+</html>
